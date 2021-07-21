@@ -37,7 +37,6 @@ import wannabit.io.cosmostaion.base.BaseActivity;
 import wannabit.io.cosmostaion.base.BaseChain;
 import wannabit.io.cosmostaion.base.BaseConstant;
 import wannabit.io.cosmostaion.crypto.CryptoHelper;
-import wannabit.io.cosmostaion.dao.Account;
 import wannabit.io.cosmostaion.dialog.Dialog_ChoiceNet;
 import wannabit.io.cosmostaion.dialog.Dialog_FetchRestorePath;
 import wannabit.io.cosmostaion.dialog.Dialog_KavaRestorePath;
@@ -76,7 +75,7 @@ public class RestoreActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<String>   mWords = new ArrayList<>();
 
     private boolean             mIsNewBip44;
-    private int                 customPath;
+    private int                 mIsFetchNewBip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -372,8 +371,8 @@ public class RestoreActivity extends BaseActivity implements View.OnClickListene
         onConfirmedWords();
     }
 
-    public void onUsingCustomPath(int using) {
-        customPath = using;
+    public void onUsingFetchNewBip(int using) {
+        mIsFetchNewBip = using;
         onConfirmedWords();
     }
 
@@ -388,7 +387,7 @@ public class RestoreActivity extends BaseActivity implements View.OnClickListene
             intent.putExtra("size", mWords.size());
             intent.putExtra("chain", mChain.getChain());
             intent.putExtra("bip44", mIsNewBip44);
-            intent.putExtra("customPath", customPath);
+            intent.putExtra("fetchbip", mIsFetchNewBip);
             startActivity(intent);
         }
     }
